@@ -37,7 +37,6 @@
     .compPick {
         display: flex;
         justify-content: center;
-        margin-top: 50px;
         flex-wrap: wrap;
     }
 
@@ -49,6 +48,17 @@
         float: right !important;
         padding-right: 25px;
         padding-left: 0 !important;
+    }
+
+    #newGame {
+        margin-top: 25px;
+        font-weight: bold;
+        font-size: 20px;
+        border: 2px solid black;
+    }
+
+    .yourPickP {
+        margin: 39px;
     }
 
 }
