@@ -1,0 +1,54 @@
+@media screen and (min-device-width: 800px) {
+    
+    img {
+        width: 150px;
+        height: 150px;
+        
+    }
+
+    .buttonContainer {
+        margin-top: 300px;
+        display: flex;
+        justify-content: center;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    p {
+        flex-basis: 100%;
+        text-align: center; 
+        padding-bottom: 10px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .heading {
+        text-align: center;
+        font-family: cursive;
+        padding-bottom: 5px;
+        border: 2px solid black;
+    }
+
+    .heading span {
+        float: left;
+        padding-left: 10px;
+    }
+    
+    .compPick {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        flex-wrap: wrap;
+    }
+
+    button {
+        position: relative;
+    }
+
+    .floatedSpan {
+        float: right !important;
+        padding-right: 25px;
+        padding-left: 0 !important;
+    }
+
+}
