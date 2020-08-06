@@ -5,6 +5,8 @@ $(function() {
     rock();
 
     scissor();
+
+    newGame();
 });
 
 let possibilities = ['Rock', 'Paper', 'Scissor'];
@@ -18,6 +20,12 @@ let gamesPlayed = 0;
 let loses = 0;
 
 let wins = 0;
+
+let pargraph;
+
+let undoAnimations = 0;
+
+let draws = 0;
 
 
 function rock() {
@@ -49,8 +57,6 @@ function clickedRock() {
 
     check();
 
-    $('#yourPickP').replaceWith('<p></p>');
-
     $('#rock').prop('disabled', true);
 
     $('#paper').prop('disabled', true);
@@ -58,6 +64,8 @@ function clickedRock() {
     $('#scissor').prop('disabled', true);
 
     $('#gamesPlayed').text(gamesPlayed);
+
+    undoAnimations = 0;
 }
 
 function clickedPaper() {
@@ -77,26 +85,30 @@ function clickedPaper() {
     $('#scissor').prop('disabled', true);
 
     $('#gamesPlayed').text(gamesPlayed);
+
+    undoAnimations = 1;
 }
 
 
 function clickedScissor() {
-
+    
     gamesPlayed += 1;
-
+    
     userPick = possibilities[2];
-
+    
     compPick = possibilities[Math.floor(Math.random() * Math.floor(3))];
-
+    
     check();
-
+    
     $('#rock').prop('disabled', true);
-
+    
     $('#paper').prop('disabled', true);
-
+    
     $('#scissor').prop('disabled', true); 
-
+    
     $('#gamesPlayed').text(gamesPlayed);
+
+    undoAnimations = 2;
 }
 
 function check() {
@@ -106,33 +118,39 @@ function check() {
         $('#paper').animate({bottom: '200px'}, 'slow');
         $('#questionMark').animate({top: '100px'}, 'slow');
         $('#questionMark').attr('src', 'Scissor Rotated.jpg')
-        $('#compPickP').replaceWith('<p>You lost!</p>');
+        $('#compPickP').text('You lost!');
+        $('#yourPickP').text('');
+        $('#yourPickP').addClass('yourPickP');
         loses += 1;
-        $('#gamesLost').text(loses);
+        $('#lostGames').text(loses);
     } 
-
+    
     else {
         
         if (userPick === possibilities[0] && compPick === possibilities[1]) {
-
+            
             $('#questionMark').attr('src', 'Paper Rotated.jpg')
             $('#rock').animate({bottom: '200px'}, 'slow');
             $('#questionMark').animate({top: '100px'}, 'slow');
-            $('#compPickP').replaceWith('<p>You lost!</p>');
+            $('#compPickP').text('You lost!');
+            $('#yourPickP').text('');
+            $('#yourPickP').addClass('yourPickP');
             loses += 1;
-            $('#gamesLost').text(loses);
+            $('#lostGames').text(loses);
         }
-
+        
         else {
-
+            
             if (userPick === possibilities[2] && compPick === possibilities[0]) {
-
+                
                 $('#questionMark').attr('src', 'Rock Rotated.jpg')
                 $('#scissor').animate({bottom: '200px'}, 'slow');
                 $('#questionMark').animate({top: '100px'}, 'slow');
-                $('#compPickP').replaceWith('<p>You lost!</p>');
+                $('#compPickP').text('You lost!');
+                $('#yourPickP').text('');
+                $('#yourPickP').addClass('yourPickP');
                 loses += 1;
-                $('#gamesLost').text(loses);
+                $('#lostGames').text(loses);
             }
 
             else {
@@ -142,7 +160,11 @@ function check() {
                     $('#questionMark').attr('src', 'Paper Rotated.jpg')
                     $('#paper').animate({bottom: '200px'}, 'slow');
                     $('#questionMark').animate({top: '100px'}, 'slow');
-                    $('#compPickP').replaceWith('<p>Draw!</p>');
+                    $('#compPickP').text('Draw!');
+                    $('#yourPickP').text('');
+                    $('#yourPickP').addClass('yourPickP');
+                    draws += 1;
+                    $('#draws').text(draws);
                 }
                 
                 else {
@@ -152,7 +174,11 @@ function check() {
                         $('#questionMark').attr('src', 'Scissor Rotated.jpg')
                         $('#scissor').animate({bottom: '200px'}, 'slow');
                         $('#questionMark').animate({top: '100px'}, 'slow');
-                        $('#compPickP').replaceWith('<p>Draw!</p>');
+                        $('#compPickP').text('Draw!');
+                        $('#yourPickP').text('');
+                        $('#yourPickP').addClass('yourPickP');
+                        draws += 1;
+                        $('#draws').text(draws);
                     }
 
                     else {
@@ -162,7 +188,11 @@ function check() {
                             $('#questionMark').attr('src', 'Rock Rotated.jpg')
                             $('#rock').animate({bottom: '200px'}, 'slow');
                             $('#questionMark').animate({top: '100px'}, 'slow');
-                            $('#compPickP').replaceWith('<p>Draw!</p>');
+                            $('#compPickP').text('Draw!');
+                            $('#yourPickP').text('');
+                            $('#yourPickP').addClass('yourPickP');
+                            draws += 1;
+                            $('#draws').text(draws);
                         }
 
                         else {
@@ -172,9 +202,11 @@ function check() {
                                 $('#questionMark').attr('src', 'Rock Rotated.jpg')
                                 $('#paper').animate({bottom: '200px'}, 'slow');
                                 $('#questionMark').animate({top: '100px'}, 'slow');
-                                $('#compPickP').replaceWith('<p>You won!</p>');
+                                $('#compPickP').text('You won!');
+                                $('#yourPickP').text('');
+                                $('#yourPickP').addClass('yourPickP');
                                 wins += 1;
-                                $('#gamesWon').text(wins);
+                                $('#wonGames').text(wins);
                             }
 
                             else {
@@ -184,9 +216,11 @@ function check() {
                                     $('#questionMark').attr('src', 'Scissor Rotated.jpg')
                                     $('#rock').animate({bottom: '200px'}, 'slow');
                                     $('#questionMark').animate({top: '100px'}, 'slow');
-                                    $('#compPickP').replaceWith('<p>You won!</p>');
+                                    $('#compPickP').text('You won!');
+                                    $('#yourPickP').text('');
+                                    $('#yourPickP').addClass('yourPickP');
                                     wins += 1;
-                                    $('#gamesWon').text(wins);
+                                    $('#wonGames').text(wins);
                                 }
 
                                 else {
@@ -196,9 +230,11 @@ function check() {
                                         $('#questionMark').attr('src', 'Paper Rotated.jpg')
                                         $('#scissor').animate({bottom: '200px'}, 'slow');
                                         $('#questionMark').animate({top: '100px'}, 'slow');
-                                        $('#compPickP').replaceWith('<p>You won!</p>');
+                                        $('#compPickP').text('You won!');
+                                        $('#yourPickP').text('');
+                                        $('#yourPickP').addClass('yourPickP');
                                         wins += 1;
-                                        $('#gamesWon').text(wins);
+                                        $('#wonGames').text(wins);
                                     }
                                     
                                 }
@@ -209,4 +245,50 @@ function check() {
             }
         }
     }
+}
+
+function newGame() {
+
+    $('#newGame').on('click', clickedNewGame);
+}
+
+function clickedNewGame() {
+
+    $('#rock').prop('disabled', false);
+
+    $('#paper').prop('disabled', false);
+
+    $('#scissor').prop('disabled', false);
+
+    if (undoAnimations == 0) {
+
+        $('#rock').animate({bottom: '0px'}, '0');
+        $('#questionMark').animate({top: '0px'}, '0');
+        $('#questionMark').attr('src', 'Question Mark.jpg');
+        $('#compPickP').text("Computer's pick");
+        $('#yourPickP').text('Your pick');
+        $('#yourPickP').removeClass('yourPickP');
+    }
+    else {
+
+        if (undoAnimations == 1) {
+
+            $('#paper').animate({bottom: '0px'}, '0');
+            $('#questionMark').animate({top: '0px'}, '0');
+            $('#questionMark').attr('src', 'Question Mark.jpg');
+            $('#compPickP').text("Computer's pick");
+            $('#yourPickP').text('Your pick');
+            $('#yourPickP').removeClass('yourPickP');
+        }
+        else {
+
+                $('#scissor').animate({bottom: '0px'}, '0');
+                $('#questionMark').animate({top: '0px'}, '0');
+                $('#questionMark').attr('src', 'Question Mark.jpg');
+                $('#compPickP').text("Computer's pick");
+                $('#yourPickP').text('Your pick');
+                $('#yourPickP').removeClass('yourPickP');
+        }
+    }
+
 }
