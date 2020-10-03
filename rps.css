@@ -60,5 +60,8 @@
     .yourPickP {
         margin: 39px;
     }
-
+    
+    #gamesPlayed {
+        margin-right: 170px;
+    }
 }
